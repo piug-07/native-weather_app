@@ -33,7 +33,7 @@ export default function HomeScreen() {
         // console.log('value: ',search);
         if (search && search.length > 2)
             fetchLocations({ cityName: search }).then(data => {
-                console.log('got locations: ', data);
+                // console.log('got locations: ', data);
                 setLocations(data);
             })
     }
@@ -45,6 +45,7 @@ export default function HomeScreen() {
             cityName: loc.name,
             days: '7'
         }).then(data => {
+            console.log(data)
             setLoading(false);
             setWeather(data);
             storeData('city', loc.name);
@@ -66,7 +67,9 @@ export default function HomeScreen() {
             cityName,
             days: '7'
         }).then(data => {
-            // console.log('got data: ',data.forecast.forecastday);
+            // console.log('got data1: ', data);
+            // console.log('got data2: ', data.forecast);
+            console.log('got data: ', data.forecast.forecastday);
             setWeather(data);
             setLoading(false);
         })
@@ -224,19 +227,22 @@ export default function HomeScreen() {
                                                             {item?.day?.avgtemp_c}&#176;
                                                         </Text>
                                                     </View>
+
                                                 )
                                             })
+
                                         }
 
                                     </ScrollView>
-                                </View>
 
+                                </View>
+                                            
                             </SafeAreaView >
                         )
                     }
                 </View >
             </KeyboardAvoidingView>
-        </ScrollView>
+        </ScrollView >
     );
 }
 
